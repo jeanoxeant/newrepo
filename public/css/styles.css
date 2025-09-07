@@ -81,7 +81,7 @@
 .pictures {
   display: grid;
   grid-template-columns: auto auto;
-  row-gap: 10px;
+  row-gap: 30px;
   padding: 1px;
   margin-right: 50px;
 }
@@ -129,6 +129,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     color: rgb(0, 102, 255);
     padding: 1.5rem;
+    padding-left: 5px;
   }
 
   .herolabel h3 {
@@ -157,8 +158,6 @@
 
   .herolabel ul li {
     text-align: left;
-    color: blueviolet;
-
   }
 
   
@@ -224,11 +223,33 @@
   padding-top: 10px;
 }
 
-figure img {
-  background-color: dodgerblue;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 10px;
-  padding-top: 10px;
+.pictures > figure {
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+  background-color: aqua;
+  justify-items: center;
+  align-items: end;
+}
 
+ #flux {
+  padding-top: 25px;
+}
+
+#bumper {
+  padding-top: 15px;
+}
+
+.pictures {
+  position: relative;
+}
+
+figcaption {
+  position: absolute;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+main {
+  margin-bottom: 50px;
 }
