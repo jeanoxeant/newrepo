@@ -2,9 +2,11 @@
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
+
 /* ***********************
  * Require Statements
  *************************/
+const bodyParser = require("body-parser")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const express = require("express")
@@ -14,7 +16,34 @@ const app = express()
 const static = require("./routes/static")
 const utilities = require("./utilities/")
 const intentionalErrorRoute = require("./routes/intentionalErrorRoute.js");
+const accountRoute = require("./routes/accountRoute")
+const session = require("express-session")
+const pool = require('./database/')
 
+
+/* ***********************
+ * Middleware
+ * ************************/
+ app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* ***********************
  * View Engine and Templates
@@ -24,6 +53,7 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
+
 
 /* ***********************
  * Routes
@@ -35,6 +65,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Intentional error route. Used for testing
 app.use("/ierror", intentionalErrorRoute);
+// Account Route login
+app.use("/account", accountRoute)
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})

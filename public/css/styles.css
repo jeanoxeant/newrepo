@@ -336,6 +336,63 @@ main {
   padding-left: 10px;
 }
 
+
 .car-listing img {
   width: 100%;
+}
+
+.notice {
+  color: red;
+  list-style: none;
+}
+
+
+.input-box {
+  background-color: blanchedalmond;
+  border: 10px solid rgb(215, 207, 176);
+  /*text-align: center;*/
+  margin: auto;
+  box-shadow: 5px 5px #888888;
+}
+
+.input-box li {
+  padding-bottom: 10px;
+  
+}
+
+.input-box li input {
+  padding-bottom: 5px;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid blanchedalmond;
+  padding-top: 10px;
+}
+
+.input-box div {
+  text-align: center;
+  padding-bottom: 30px;
+  border-radius: 5%;
+}
+
+.input-box ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.input-box ul {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.input-box ul .login {
+  text-align: center;
+  
+}
+
+.input-box ul .login input {
+  text-align: center;
+  border-radius: 40px 40px 40px 40px;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid blanchedalmond;
 }
