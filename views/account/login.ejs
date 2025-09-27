@@ -6,7 +6,7 @@
         <li><label>Email:</label><br>
             <input type="email" name="account_email" size="40" required autocomplete="email" value="<%= locals.account_email %>"></li>
         <li><label>Password:</label><br>
-            <input type="password" size="40" name="account_password" id="password" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{12,}$"></li>
+            <input type="password" size="40" name="account_password" id="password" required autocomplete="current-password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></li>
         <li class="login"><input type="submit" value="LOGIN"></li>
     </ul>
     <div>

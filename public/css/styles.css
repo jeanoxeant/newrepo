@@ -396,3 +396,13 @@ main {
   padding-right: 30px;
   border: 1px solid blanchedalmond;
 }
+
+.input-box ul .registration input {
+  /*text-align: center;*/
+  border-radius: 40px 40px 40px 40px;
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid blanchedalmond;
+  margin-top: 20px;
+}
