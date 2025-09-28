@@ -1,17 +1,27 @@
 <h1><%- title %></h1>
 <%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
 
 <form class="input-box" action="/account/register" method="post">
     <ul>
         <li><label>First name:</label><br>
-            <input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>">
+           <!--  <input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>"> -->
+            <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
         </li>
         <li><label>Last name:</label><br>
-            <input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>">
+            <!-- <input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>"> -->
+            <input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>">
         </li>
         <li><label>Email address:</label><br>
-            <input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>">
+            <!-- <input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>"> -->
+            <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
         </li>
         <li><label for="accountPassword">Password:</label><br>
             <input type="password" name="account_password" id="password" required autocomplete="new-password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><span class="reveal-button active" id="passwordHide">hide password</span>
