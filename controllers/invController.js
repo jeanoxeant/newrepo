@@ -12,7 +12,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
   const className = data[0].classification_name
-  res.render("./inventory/classification", {
+  res.render("inventory/classification", {
     title: className + " vehicles",
     nav,
     grid,
@@ -50,7 +50,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav();
   const classificationSelect = await utilities.buildClassificationList();
-  res.render("./inventory/management", {
+  res.render("inventory/management", {
     title: "Vehicle Management",
     errors: null,
     nav,
@@ -89,7 +89,7 @@ invCont.addClassification = async function (req, res, next) {
       "notice",
       `The "${classification_name}" classification was successfully added.`
     );
-    res.render("./inventory/management", {
+    res.render("inventory/management", {
       title: "Vehicle Management",
       errors: null,
       nav,
@@ -165,7 +165,7 @@ invCont.addInventory = async function (req, res, next) {
       `The ${inv_year} ${inv_make} ${inv_model} successfully added.`
     );
     const classificationSelect = await utilities.buildClassificationList(classification_id);
-    res.render("./inventory/management", {
+    res.render("inventory/management", {
       title: "Vehicle Management",
       nav,
       classificationSelect,
