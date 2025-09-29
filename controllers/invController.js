@@ -11,7 +11,8 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await invModel.getInventoryByClassificationId(classification_id)
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
-  const className = data[0].classification_name
+  const className = data?.[0]?.classification_name ?? null;
+
   res.render("inventory/classification", {
     title: className + " vehicles",
     nav,
@@ -24,8 +25,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 invCont.buildByInventoryId = async function (req, res, next) {
   const inventoryId = req.params.inventoryId;
-  //const data = await invModel.getInventoryByInventoryId(inventoryId + 5); // Buggy code
-  const data = await invModel.getInventoryByInventoryId(inventoryId); // Clean code
+  const data = await invModel.getInventoryByInventoryId(inventoryId); 
   const listing = await utilities.buildItemListing(data[0]);
   let nav = await utilities.getNav();
   const itemName = `${data[0].inv_make} ${data[0].inv_model}`;
@@ -41,12 +41,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
  * Vehicle Management Controllers
  **********************************/
 
-/**
- * Build the main vehicle management view
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
+/* Build the main vehicle management view */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav();
   const classificationSelect = await utilities.buildClassificationList();
@@ -58,12 +53,7 @@ invCont.buildManagementView = async function (req, res, next) {
   });
 };
 
-/**
- * Build the add classification view
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
+/* Build the add classification view */
 invCont.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav();
 
@@ -73,12 +63,7 @@ invCont.buildAddClassification = async function (req, res, next) {
     errors: null,
   });
 };
-/**
- * Handle post request to add a vehicle classification
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
+/* Handle post request to add a vehicle classification */
 invCont.addClassification = async function (req, res, next) {
   const { classification_name } = req.body;
 
@@ -106,12 +91,7 @@ invCont.addClassification = async function (req, res, next) {
   }
 };
 
-/**
- * Build the add inventory view
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
+/* Build the add inventory view */
 invCont.buildAddInventory = async function (req, res, next) {
   const nav = await utilities.getNav();
   let classifications = await utilities.buildClassificationList();
@@ -124,12 +104,7 @@ invCont.buildAddInventory = async function (req, res, next) {
   });
 };
 
-/**
- * Handle post request to add a vehicle to the inventory along with redirects
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
- */
+/* Handle post request to add a vehicle to the inventory along with redirects */
 invCont.addInventory = async function (req, res, next) {
   const nav = await utilities.getNav();
 

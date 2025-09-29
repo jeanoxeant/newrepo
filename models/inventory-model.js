@@ -11,7 +11,6 @@ async function addClassification(classification_name) {
   // ..for insertion to the database.
   const sql = `INSERT INTO public.classification (classification_name) 
     VALUES ($1)`;
-
   try {
     return await pool.query(sql, [classification_name]);
   } catch (error) {
