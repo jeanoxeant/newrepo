@@ -6,7 +6,6 @@
 /* ***********************
  * Require Statements
  *************************/
-const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
@@ -20,6 +19,7 @@ const intentionalErrorRoute = require("./routes/intentionalErrorRoute.js");
 const accountRoute = require("./routes/accountRoute")
 const session = require("express-session")
 const pool = require('./database/')
+const cookieParser = require("cookie-parser")
 
 
 /* ***********************
@@ -37,7 +37,8 @@ const pool = require('./database/')
 }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -45,7 +46,7 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-app.use(cookieParser())
+
 
 
 /* ***********************

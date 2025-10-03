@@ -1,0 +1,46 @@
+<h1><%- title %></h1>
+<%- messages() %> <%# WK4 TSK2.4 %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <form class="input-box" action="/inv/update" id="updateForm" method="post">
+    <h3>ALL FIELDS ARE REQUIRED.</h5>
+    <fieldset>
+      <label>Classification<br>
+        <%- classifications %>
+    </label><br><br>
+      <label>Make:</label><br>
+    <input type="text" value="<%- locals.inv_make %>" placeholder="example: Tesla" name="inv_make" minlength="2" maxlength="50"><br><br>
+    <label>Model:</label><br>
+    <input type="text" value="<%- locals.inv_model %>" placeholder="example: Model 3" name="inv_model" minlength="2" maxlength="50"><br><br>
+    
+    <label>Description:<br>
+        <textarea placeholder="An all-electric, compact executive sedan. It recognized for its minimalist interior, advance technology, and impressive range." name="inv_description" minlength="2" maxlength="500" rows="10"><%- locals.inv_description %></textarea>
+    </label><br><br>
+    <label>Image Path</label><br>
+    <input type="text" value="/images/vehicles/no-image.png" placeholder="blue_tesla.jpg" name="inv_image"><br><br>
+    <label>Thumbnail Path</label><br>
+    <input type="text" value="/images/vehicles/no-image-tn.png" placeholder="litle_blue_tesla.jpg" name="inv_thumbnail"><br><br>
+    <label>Price</label><br>
+    <input type="number" value="<%- locals.inv_price %>" placeholder="64,900" name="inv_price"><br><br>
+    <label>Year:</label><br>
+    <input type="number" value="<%- locals.inv_year %>" placeholder="2024" name="inv_year" min="1900" max="2030"><br><br>
+    <label>Miles</label><br>
+    <input type="number" value="<%- locals.inv_miles %>" placeholder="100,000" name="inv_miles"><br><br>
+    <label>Color</label><br>
+    <input type="text" value="<%- locals.inv_color %>" placeholder="Blue" name="inv_color"><br><br>
+    <!-- <input type="submit" name="submit" value="Update Vehicle"> -->
+    <button type="submit" disabled>Update Vehicle</button>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    </fieldset>
+    
+  </form>
+
+  <script src="../../js/inv-update.js"></script>

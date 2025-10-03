@@ -250,3 +250,13 @@ UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, 'images/', 'images/vehicles/'),
 	inv_thumbnail = REPLACE(inv_thumbnail, 'images/', 'images/vehicles/');
   
+
+--Updating User account as Admin---
+UPDATE public.account 
+SET account_type = 'Admin'
+WHERE account_firstname = 'Manager';
+
+--Updating Employee account as Employee---
+UPDATE public.account 
+SET account_type = 'Employee'
+WHERE account_lastname = 'Employee';

@@ -1,0 +1,35 @@
+<h1><%- title %></h1>
+<%- messages() %> <%# WK4 TSK2.4 %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <form class="input-box" action="/inv/delete" method="post">
+    <h3>ALL FIELDS ARE REQUIRED.</h5>
+    <fieldset>
+      <label>Classification<br>
+        <%- classifications %>
+    </label><br><br>
+      <label>Make:</label><br>
+    <input type="text" value="<%- locals.inv_make %>" placeholder="example: Tesla" name="inv_make" minlength="2" maxlength="50" readonly><br><br>
+    <label>Model:</label><br>
+    <input type="text" value="<%- locals.inv_model %>" placeholder="example: Model 3" name="inv_model" minlength="2" maxlength="50" readonly><br><br>
+    <label>Price</label><br>
+    <input type="number" value="<%- locals.inv_price %>" placeholder="64,900" name="inv_price" readonly><br><br>
+    <label>Year:</label><br>
+    <input type="number" value="<%- locals.inv_year %>" placeholder="2024" name="inv_year" min="1900" max="2030" readonly><br><br>
+    
+    
+    <!-- <input type="submit" name="submit" value="Update Vehicle"> -->
+    <p>Are you sure that you want to delete it?</p>
+    <button type="submit">Delete Vehicle</button>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    </fieldset>
+    
+  </form>
