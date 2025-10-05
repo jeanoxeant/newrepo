@@ -168,7 +168,7 @@ validate.checkInventoryData = async (req, res, next) => {
 
 
 /* ******************************
- * Check data and return errors or continue to modify.
+ * Check data and return errors or directed back to edit view.
  * ***************************** */
 validate.checkUpdateData = async (req, res, next) => {
   let errors = [];
@@ -176,7 +176,7 @@ validate.checkUpdateData = async (req, res, next) => {
 
   if (!errors.isEmpty()) {
     const {
-      inventory_id,
+      inv_id,
       inv_make,
       inv_model,
       inv_year,
@@ -194,7 +194,7 @@ validate.checkUpdateData = async (req, res, next) => {
     let nav = await utilities.getNav();
     res.render("inventory/edit-inventory", { // Try again
       errors,
-      title: "Modify Inventory",
+      title: "Edit Inventory",
       nav,
       classifications,
       inv_make,
@@ -206,10 +206,12 @@ validate.checkUpdateData = async (req, res, next) => {
       inv_price,
       inv_miles,
       inv_color,
+      inv_id
     });
     return;
   }
   next();
 };
+
 
 module.exports = validate;

@@ -9,6 +9,10 @@
     .card {
       box-shadow: 1px 1px 10px black;
     }
+
+    .siteName {
+      font-size: smaller;
+    }
   
     nav ul {
           display: flex;
@@ -46,7 +50,6 @@
     margin-right: 100px;
     padding: 50px;
    }
-
 
    .principal {
     display: grid;
@@ -172,7 +175,6 @@
   }
 
   
-
   /*-----------------------------Menu-------------------------------------------*/
   nav ul {
           display: flex;
@@ -181,7 +183,7 @@
       nav ul li {
           flex: 1 1 100%;
       }
-  
+
     h1 {
       font-weight: 100;
     }
@@ -190,7 +192,6 @@
       font-size: 1.5rem;
   }
    
-
    nav {
     background-color: #333;
     color: white;
@@ -206,7 +207,7 @@
 }
 
 .siteName a {
-  font-size: 50px;
+  font-size: 30px;
   text-align: left;
 }
 
@@ -440,4 +441,17 @@ main {
   list-style: none;
   padding-bottom: 1rem;
   font-size: large;
+}
+
+.input-box #passwordHide {
+  background-color: #e1ede9;
+  border: none;
+  color: rgb(50, 39, 39);
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
