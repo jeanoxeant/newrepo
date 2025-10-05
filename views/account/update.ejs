@@ -9,8 +9,8 @@
   <% } %>
 
 <form class="input-box" action="/account/update" method="post">
-    <label>First name<input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>"></label><br><br>
-    <label>Last name<input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>"></label><br><br>
+    <label>First name<br><input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>"></label><br><br>
+    <label>Last name<br><input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>"></label><br><br>
     <label>Email address<input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>"></label>
     <br><br>
     <input type="submit" value="UPDATE">
