@@ -17,6 +17,7 @@ const static = require("./routes/static")
 const utilities = require("./utilities/")
 const intentionalErrorRoute = require("./routes/intentionalErrorRoute.js");
 const accountRoute = require("./routes/accountRoute")
+const messageRoute = require('./routes/messageRoute.js');
 const session = require("express-session")
 const pool = require('./database/')
 const cookieParser = require("cookie-parser")
@@ -35,6 +36,7 @@ const cookieParser = require("cookie-parser")
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
@@ -71,6 +73,8 @@ app.use("/inv", inventoryRoute)
 app.use("/ierror", intentionalErrorRoute);
 // Account Route login
 app.use("/account", accountRoute)
+// Message routes
+app.use("/message", messageRoute);
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
