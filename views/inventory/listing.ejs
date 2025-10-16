@@ -7,3 +7,19 @@
 <%# messages() %>
 
 <%- listing %>
+
+
+<div id="reviews-section">
+  <h3>My Review</h3>
+  
+  <form id="review-form">
+    <label>Rating:</label><br>
+    <input type="number" id="rating" name="rating" min="1" max="5" required /><br>
+    <label>Leave a comment:</label><br>
+    <textarea id="comment" name="comment" required></textarea><br>
+    <button type="submit">Save Review</button>
+    <button type="button" id="delete-review" style="display:none;">Delete Review</button>
+  </form>
+
+  <p id="review-message"></p>
+</div>

@@ -17,7 +17,7 @@ const static = require("./routes/static")
 const utilities = require("./utilities/")
 const intentionalErrorRoute = require("./routes/intentionalErrorRoute.js");
 const accountRoute = require("./routes/accountRoute")
-const messageRoute = require('./routes/messageRoute.js');
+const messageRoute = require('./routes/messageRoute.js'); // I called the messageRoute from my route folder.
 const session = require("express-session")
 const pool = require('./database/')
 const cookieParser = require("cookie-parser")
@@ -111,3 +111,6 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+
+
