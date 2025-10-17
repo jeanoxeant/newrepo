@@ -17,15 +17,15 @@
     </dl>
     <pre class="message-pane"><%- messageData.mes_body %></pre>
     <div class="button-strip">
-        <a href="/message/compose/<%- messageData.mes_id %>" title="Reply to this message"></a>
-        <button id="readButton" title="Mark this message as read" data-id="<%- messageData.mes_id %>"></button>
-        <button id="archiveButton" title="Move this message to the archive." data-id="<%- messageData.mes_id %>"></button>
-        <a href="/message/view/<%- messageData.mes_id %>/delete" id="deleteButton" title="Permanently delete this message"></a>
+        <a href="/message/compose/<%- messageData.mes_id %>" title="Reply to this message">Reply</a>
+        <button id="readButton" title="Mark this message as read" data-id="<%- messageData.mes_id %>">Read</button>
+        <button id="archiveButton" title="Move this message to the archive." data-id="<%- messageData.mes_id %>">Archive</button>
+        <a href="/message/view/<%- messageData.mes_id %>/delete" id="deleteButton" title="Permanently delete this message">Delete</a>
     </div>
 </div>
 <br>
 <div class="button-strip">
-    <a href="/message" title="Return to inbox"></a>
+    <a href="/message" title="Return to inbox">Return to inbox</a>
 </div>
 <script src="/js/message-view.js">
 </script>

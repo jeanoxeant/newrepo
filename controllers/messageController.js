@@ -8,9 +8,6 @@ const messageModel = require("../models/message-model");
 
 /**
  * Deliver inbox view get
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 
 async function buildInbox(req, res, next) {
@@ -37,9 +34,6 @@ async function buildInbox(req, res, next) {
 
 /**
  * Deliver archive view get
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function buildArchive(req, res, next) {
   let nav = await utilities.getNav();
@@ -65,15 +59,12 @@ async function buildArchive(req, res, next) {
 
 /**
  * Deliver message view get
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function buildMessageView(req, res, next) {
   const messageId = req.params.messageId;
   const messageData = await messageModel.getMessageById(messageId);
 
-  if (messageData.message_to == res.locals.accountData.account_id) {
+  if (messageData.mes_receiver == res.locals.accountData.account_id) {
     const nav = await utilities.getNav();
     res.render("message/message-view", {
       title: "Message: " + messageData.mes_subject,
@@ -89,9 +80,6 @@ async function buildMessageView(req, res, next) {
 
 /**
  * Deliver compose view get
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function buildCompose(req, res, next) {
   const nav = await utilities.getNav();
@@ -126,14 +114,11 @@ async function buildCompose(req, res, next) {
 
 /**
  * Process send message post
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function sendMessage(req, res, next) {
   const result = await messageModel.sendMessage({
     mes_sender: res.locals.accountData.account_id,
-    mes_to: req.body.mes_receiver,
+    mes_receiver: req.body.mes_receiver,
     mes_subject: req.body.mes_subject,
     mes_body: req.body.mes_body,
   });
@@ -143,9 +128,6 @@ async function sendMessage(req, res, next) {
 
 /**
  * Deliver delete confirmation view get
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function buildDelete(req, res, next) {
   let nav = await utilities.getNav();
@@ -161,9 +143,6 @@ async function buildDelete(req, res, next) {
 
 /**
  * Process delete post
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function deleteMessage(req, res, next) {
   messageModel.deleteMessage(req.body.mes_id);
@@ -173,23 +152,17 @@ async function deleteMessage(req, res, next) {
 
 /**
  * Toggle a messages read flag
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function toggleRead(req, res, next) {
-  const mes_read = await messageModel.toggleRead(req.params.messageId); // Returns the new value of message_read
+  const mes_read = await messageModel.toggleRead(req.params.messageId); // Returns the new value of mes_read
   return res.json(mes_read);
 }
 
 /**
  *  Toggle a messages archived flag
- * @param {import('express').Request} req
- * @param {import('express').Response} res
- * @param {import('express').NextFunction} next
  */
 async function toggleArchived(req, res, next) {
-  const mes_read = await messageModel.toggleArchived(req.params.messageId); // Returns the new value of message_read
+  const mes_read = await messageModel.toggleArchived(req.params.messageId); // Returns the new value of mes_read
   return res.json(mes_read);
 }
 
